@@ -1,0 +1,14 @@
+@import "./theme.scss";
+* {
+  box-sizing: border-box;
+}
+
+@font-face {
+  font-family: blacksad;
+  src: url("./style/fonts/KPIWUB+HamburgerHeaven.woff");
+}
+
+@font-face {
+  font-family: comic-sans;
+  src: url("./style/fonts/JHYQGD+LaffayetteComicPro.woff");
+}
