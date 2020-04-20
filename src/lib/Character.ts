@@ -1,9 +1,9 @@
 import { HealthType } from "./HealthType";
-import { Characteristics } from "./Characteristic";
+import { DTOCharacteristics, DAOCharacteristics } from "./Characteristic";
 
-interface ICharacter {
+interface DTOCharacter {
   name: string;
-  characteristics: Characteristics;
+  characteristics: DTOCharacteristics;
   milestones: string;
   complication: string;
   belongings: string;
@@ -17,10 +17,9 @@ interface ICharacter {
   background: string;
 }
 
-export class Character implements ICharacter {
+export class DAOCharacter implements DTOCharacter {
   name: string;
-  characteristics: Characteristics;
-  intellectFeatures?: string[];
+  characteristics: DAOCharacteristics;
   milestones: string;
   complication: string;
   belongings: string;
@@ -60,16 +59,19 @@ export class Character implements ICharacter {
   temporalAspects: string;
   background: string;
 
-  constructor(obj: ICharacter) {
+  constructor(obj: DTOCharacter) {
     this.name = obj.name;
-    this.characteristics = obj.characteristics;
+    this.characteristics = new DAOCharacteristics(obj.characteristics);
     this.milestones = obj.milestones;
     this.complication = obj.complication;
     this.belongings = obj.belongings;
     this.protection = obj.protection || 0;
-    this.stamina = Math.min(obj.stamina || Infinity, obj.characteristics.endurance * 3);
-    this.conscience = obj.conscience || obj.characteristics.conscience;
-    this.superation = obj.superation || obj.characteristics.conscience;
+    this.stamina = Math.min(
+      obj.stamina || Infinity,
+      this.characteristics.endurance * 3
+    );
+    this.conscience = obj.conscience || this.characteristics.conscience;
+    this.superation = obj.superation || this.characteristics.conscience;
     this.instinct = obj.instinct || 2;
     this.health = obj.health;
     this.temporalAspects = obj.temporalAspects;

@@ -3,12 +3,47 @@
   export let value: number = 0;
   export let columns: number = 5;
   export let maxValue: number = 30;
-  export let cssClass: string = "fa-square";
+  export let cssClass: string = "";
 </script>
 
-<style>
-  .container {
-    display: grid;
+<style lang="scss">
+  .stamina {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+
+    div:first-child {
+      font-size: initial;
+    }
+
+    div:last-child {
+      margin-top: 5px;
+      display: grid;
+      grid-template: repeat(3, 1fr) / repeat(10, 1fr);
+      grid-gap: 2px;
+    }
+
+    .container {
+      display: grid;
+    }
+  }
+
+  @media (max-width: 860px) {
+    .stamina > div:last-child > i {
+      font-size: 2em;
+    }
+
+    @media (max-width: 760px) {
+      .stamina > div:last-child > i {
+        font-size: 1em;
+      }
+
+      @media (max-width: 480px) {
+        .stamina > div:last-child {
+          display: grid;
+        }
+      }
+    }
   }
 </style>
 
@@ -19,10 +54,9 @@
     style="grid-template-columns: repeat({columns}, auto);">
     {#each { length: maxValue } as _, i}
       <i
-        class="{i <= value - 1 ? 'fas' : 'far'}
-        {cssClass}"
+        class="mdi {cssClass}{i <= value - 1 ? '' : '-outline'}"
         on:click={() => {
-          value = i;
+          value = i + 1;
         }} />
     {/each}
   </div>

@@ -13,16 +13,20 @@
   "author": "Timothy Johnson",
   "license": "GPL-3.0",
   "devDependencies": {
-    "autoprefixer": "^9.7.4",
+    "autoprefixer": "^9.7.6",
     "node-sass": "^4.13.1",
     "parcel-bundler": "^1.12.4",
-    "parcel-plugin-svelte": "^4.0.5",
+    "parcel-plugin-svelte": "^4.0.6",
     "sass": "^1.26.3",
-    "svelte": "^3.17.1",
-    "svelte-preprocess": "^3.3.0",
+    "svelte": "^3.20.1",
+    "svelte-i18n": "^3.0.3",
+    "svelte-notifications": "^0.9.9",
+    "svelte-preprocess": "^3.7.1",
     "svelte-preprocess-sass": "^0.2.0",
-    "typescript": "^3.7.5",
-    "svelte-notifications": "^0.9.9"
+    "ts-loader": "^7.0.1",
+    "typescript": "^3.8.3"
   },
-  "dependencies": {}
+  "dependencies": {
+    "@mdi/font": "^5.1.45"
+  }
 }
