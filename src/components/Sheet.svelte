@@ -362,30 +362,30 @@
       <div class="img" />
       <div class="container">
         <div class="characteristics">
-          <div class="label">CARACTERÍSTICAS</div>
+          <div class="label">{$_('app.characteristics.label')}</div>
           <hr />
           <div class="container">
             <Characteristic
-              name="FORTALEZA"
+              name={$_('app.characteristics.strength')}
               bind:characteristic={character.characteristics.strength} />
             <Characteristic
-              name="REFLEJOS"
+              name={$_('app.characteristics.reflex')}
               bind:characteristic={character.characteristics.reflex} />
             <Characteristic
-              name="VOLUNTAD"
+              name={$_('app.characteristics.will')}
               bind:characteristic={character.characteristics.will} />
             <Characteristic
-              name="INTELECTO"
+              name={$_('app.characteristics.intellect')}
               bind:characteristic={character.characteristics.intellect} />
           </div>
         </div>
         <div class="milestones-container">
-          <div class="label">HITOS</div>
+          <div class="label">{$_('app.milestones')}</div>
           <hr />
           <RuledArea rows="8" value={character.milestones} />
         </div>
         <div class="complications-container">
-          <div class="label">COMPLICACIÓN</div>
+          <div class="label">{$_('app.complication')}</div>
           <hr />
           <RuledArea rows="2" value={character.complication} />
         </div>
@@ -393,43 +393,55 @@
     </div>
     <div>
       <div class="possessions">
-        <div class="label">POSESIONES</div>
+        <div class="label">{$_('app.belongings')}</div>
         <hr />
         <RuledArea rows="9" bind:value={character.belongings} />
       </div>
       <div>
         <div class="combat-points">
-          <div class="label">PUNTUACIONES DE COMBATE</div>
+          <div class="label">{$_('app.combat-points.label')}</div>
           <hr />
           <div class="container">
             <div class="stats">
-              <Bubble name="INICIATIVA" readonly value={character.initiative} />
-              <Bubble name="DEFENSA" readonly value={character.defense} />
-              <Bubble name="PROTECCIÓN" bind:value={character.protection} />
-              <Bubble name="AGUANTE" value={character.endurance} />
+              <Bubble
+                name={$_('app.combat-points.initiative')}
+                readonly
+                value={character.initiative} />
+              <Bubble
+                name={$_('app.combat-points.defense')}
+                readonly
+                value={character.defense} />
+              <Bubble
+                name={$_('app.combat-points.protection')}
+                bind:value={character.protection} />
+              <Bubble
+                name={$_('app.combat-points.endurance')}
+                value={character.endurance} />
             </div>
             <Counter
-              name="RESISTENCIA"
+              name={$_('app.combat-points.stamina')}
               bind:value={character.stamina}
               maxValue="30"
-              columns="15"
+              columns="10"
               cssClass="mdi-checkbox-blank" />
           </div>
         </div>
         <div class="moral">
-          <div class="label">MORAL</div>
+          <div class="label">{$_('app.moral.label')}</div>
           <hr />
           <div class="container">
-            <Bubble name="CONCIENCIA" bind:value={character.conscience} />
+            <Bubble
+              name={$_('app.moral.conscience')}
+              bind:value={character.conscience} />
             <div>
               <Counter
-                name="SUPERACIÓN"
-                bind:value={character.superation}
+                name={$_('app.moral.overcoming')}
+                bind:value={character.overcoming}
                 maxValue="10"
                 columns="5"
                 cssClass="mdi-circle" />
               <Counter
-                name="INSTINTO"
+                name={$_('app.moral.instinct')}
                 bind:value={character.instinct}
                 maxValue="5"
                 cssClass="mdi-circle" />
@@ -437,12 +449,12 @@
           </div>
         </div>
         <div class="temporal-aspects">
-          <div class="label">ASPECTOS TEMPORALES</div>
+          <div class="label">{$_('app.temporal-aspects')}</div>
           <hr />
           <RuledArea rows="2" bind:value={character.temporalAspects} />
         </div>
         <div class="health">
-          <div class="label">SALUD</div>
+          <div class="label">{$_('app.health.label')}</div>
           <hr />
           <div class="radio-group">
             <div class="radio-button">
@@ -452,7 +464,7 @@
                 name="health"
                 bind:group={character.health}
                 value={HealthType.HEALTHY} />
-              <label for="health-healthy">SANO</label>
+              <label for="health-healthy">{$_('app.health.healthy')}</label>
             </div>
             <div class="radio-button">
               <input
@@ -461,7 +473,7 @@
                 name="health"
                 bind:group={character.health}
                 value={HealthType.BRUISED} />
-              <label for="health-bruised">MAGULLADO</label>
+              <label for="health-bruised">{$_('app.health.bruised')}</label>
             </div>
             <div class="radio-button">
               <input
@@ -470,8 +482,8 @@
                 name="health"
                 bind:group={character.health}
                 value={HealthType.INJURED} />
-              <label for="health-injured">HERIDO</label>
-              <span class="suffix">1 FALLO EXTRA</span>
+              <label for="health-injured">{$_('app.health.injured')}</label>
+              <span class="suffix">{$_('app.health.suffixes.injured')}</span>
             </div>
             <div class="radio-button">
               <input
@@ -480,8 +492,12 @@
                 name="health"
                 bind:group={character.health}
                 value={HealthType.BADLY_INJURED} />
-              <label for="health-badly-injured">MALHERIDO</label>
-              <span class="suffix">2 FALLOS EXTRA</span>
+              <label for="health-badly-injured">
+                {$_('app.health.badly-injured')}
+              </label>
+              <span class="suffix">
+                {$_('app.health.suffixes.badly-injured')}
+              </span>
             </div>
             <div class="radio-button">
               <input
@@ -490,15 +506,15 @@
                 name="health"
                 bind:group={character.health}
                 value={HealthType.DYING} />
-              <label for="health-dying">MORIBUNDO</label>
-              <span class="suffix">SIN ACTUAR</span>
+              <label for="health-dying">{$_('app.health.dying')}</label>
+              <span class="suffix">{$_('app.health.suffixes.dying')}</span>
             </div>
           </div>
         </div>
       </div>
     </div>
     <div>
-      <div class="label">HISTORIA</div>
+      <div class="label">{$_('app.background')}</div>
       <hr />
       <RuledArea rows="6" bind:value={character.background} />
     </div>

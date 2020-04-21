@@ -51,7 +51,8 @@
   <div class="caption">{name}</div>
   <div
     class="container"
-    style="grid-template-columns: repeat({columns}, auto);">
+    style="grid-template-columns: repeat({columns}, auto); grid-template-rows:
+    auto;">
     {#each { length: maxValue } as _, i}
       <i
         class="mdi {cssClass}{i <= value - 1 ? '' : '-outline'}"

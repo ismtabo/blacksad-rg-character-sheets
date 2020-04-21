@@ -1,6 +1,45 @@
 {
   "app": {
     "name": "Name",
-    "concept": "Concept"
+    "concept": "Concept",
+    "characteristics": {
+      "strength": "Strength",
+      "reflex": "Reflexes",
+      "will": "Will",
+      "intellect": "Intellect",
+      "label": "Characteristics"
+    },
+    "milestones": "Milestones",
+    "complication": "Complication",
+    "belongings": "Belongings",
+    "combat-points": {
+      "initiative": "Initiative",
+      "defense": "Defense",
+      "protection": "Protection",
+      "endurance": "Endurance",
+      "stamina": "Stamina",
+      "label": "Combat points"
+    },
+    "moral": {
+      "conscience": "Conscience",
+      "instinct": "Instinct",
+      "label": "Moral",
+      "overcoming": "Overcoming"
+    },
+    "health": {
+      "label": "Health",
+      "healthy": "Healthy",
+      "bruised": "Bruised",
+      "injured": "Injured",
+      "badly-injured": "Badly Injured",
+      "suffixes": {
+        "injured": "1 additional failure",
+        "badly-injured": "2 additional failures",
+        "dying": "Can not act"
+      },
+      "dying": "Dying"
+    },
+    "background": "Background",
+    "temporal-aspects": "Temporal Aspects"
   }
 }

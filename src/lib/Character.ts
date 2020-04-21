@@ -10,7 +10,7 @@ interface DTOCharacter {
   protection?: number;
   stamina?: number;
   conscience?: number;
-  superation?: number;
+  overcoming?: number;
   instinct?: number;
   health: HealthType;
   temporalAspects: string;
@@ -47,13 +47,13 @@ export class DAOCharacter implements DTOCharacter {
     this._conscience = Math.min(value, this.characteristics.conscience);
   }
   private _conscience: number;
-  get superation(): number {
-    return this._superation;
+  get overcoming(): number {
+    return this._overcoming;
   }
-  set superation(value: number) {
-    this._superation = Math.min(value, this.conscience);
+  set overcoming(value: number) {
+    this._overcoming = Math.min(value, this.conscience);
   }
-  private _superation: number;
+  private _overcoming: number;
   instinct: number;
   health: HealthType;
   temporalAspects: string;
@@ -71,7 +71,7 @@ export class DAOCharacter implements DTOCharacter {
       this.characteristics.endurance * 3
     );
     this.conscience = obj.conscience || this.characteristics.conscience;
-    this.superation = obj.superation || this.characteristics.conscience;
+    this.overcoming = obj.overcoming || this.characteristics.conscience;
     this.instinct = obj.instinct || 2;
     this.health = obj.health;
     this.temporalAspects = obj.temporalAspects;

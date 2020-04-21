@@ -1,6 +1,45 @@
 {
   "app": {
     "name": "Nombre",
-    "concept": "Concepto"
+    "concept": "Concepto",
+    "characteristics": {
+      "strength": "Fortaleza",
+      "reflex": "Reflejos",
+      "will": "Voluntad",
+      "intellect": "Intelecto",
+      "label": "Características"
+    },
+    "milestones": "Hitos",
+    "complication": "Complicación",
+    "belongings": "Posesiones",
+    "combat-points": {
+      "initiative": "Iniciativa",
+      "defense": "Defensa",
+      "protection": "Protección",
+      "endurance": "Aguante",
+      "stamina": "Resistencia",
+      "label": "Puntuaciones de combate"
+    },
+    "moral": {
+      "conscience": "Consciencia",
+      "instinct": "Instinto",
+      "label": "Moral",
+      "overcoming": "Superación"
+    },
+    "health": {
+      "label": "Salud",
+      "healthy": "Sano",
+      "bruised": "Magullado",
+      "injured": "Herido",
+      "badly-injured": "Malherido",
+      "suffixes": {
+        "injured": "1 fallo extra",
+        "badly-injured": "2 fallos extra",
+        "dying": "Sin actuar"
+      },
+      "dying": "Moribundo"
+    },
+    "background": "Historia",
+    "temporal-aspects": "Aspectos Temporales"
   }
 }

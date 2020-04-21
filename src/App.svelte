@@ -1,6 +1,6 @@
 <script lang="typescript">
   import { onMount } from "svelte";
-  import { locales } from "svelte-i18n";
+  import { locale, locales } from "svelte-i18n";
   import { setupI18n, _ } from "./i18n";
   import Sheet from "./components/Sheet.svelte";
 
@@ -15,6 +15,7 @@
   :global(.label),
   :global(label) {
     font-family: $title-font;
+    text-transform: uppercase;
   }
 
   :global(input),
@@ -132,8 +133,8 @@
         <ul class="dropdown">
           {#each $locales as _locale}
             <li class="dropdown-item">
-              <a href="#">
-                {_locale.toUpperCase()}
+              <a href="#" on:click={() => locale.set(_locale)}>
+                {$locale == _locale ? '->' : ''} {_locale.toUpperCase()}
                 <i
                   class="flag-icon flag-icon-{_locale == 'en' ? 'us' : _locale}" />
               </a>
