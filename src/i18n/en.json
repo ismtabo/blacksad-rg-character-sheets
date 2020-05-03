@@ -7,7 +7,13 @@
       "reflex": "Reflexes",
       "will": "Will",
       "intellect": "Intellect",
-      "label": "Characteristics"
+      "label": "Characteristics",
+      "warning-points-left": "The maximum number of point that can be spend in the characteristics is 12. You have spent {0} puntos.",
+      "help": "The characteristics determine the ease with which your character faces the different challenges of strength, dexterity, will and intellect as your master indicates. The points you spend on each attribute determines the number of black dice you roll. On each attribute you may spent up to 5 points, with a maximum of 12 in total.",
+      "feature-placeholder": "Feature +modifier[, Feature 2 +modifier ...]",
+      "feature-warning-invalid-point-range": "The feature modifier must be between 1 and 3.",
+      "feature-warning-available-points-exceeded": "You have exceeded {0} available points of {1}.",
+      "feature-warning-invalid-features-pattern": "Check the format of the features: \"Name +modifier\" separated by commas"
     },
     "milestones": "Milestones",
     "complication": "Complication",
@@ -31,7 +37,7 @@
       "healthy": "Healthy",
       "bruised": "Bruised",
       "injured": "Injured",
-      "badly-injured": "Badly Injured",
+      "badly-injured": "Badly Hurt",
       "suffixes": {
         "injured": "1 additional failure",
         "badly-injured": "2 additional failures",
@@ -40,6 +46,8 @@
       "dying": "Dying"
     },
     "background": "Background",
-    "temporal-aspects": "Temporal Aspects"
+    "temporal-aspects": "Temporal Aspects",
+    "languages": "Languages",
+    "warning-dismiss-message": "Click this message to dismiss it"
   }
 }

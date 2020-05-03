@@ -12,34 +12,8 @@ export class DAOCharacteristic implements DTOCharacteristic {
     this.features = (features || []).map((feat) => new DAOFeature(feat));
   }
 
-  addFeature({ label, modifier }: DTOFeature) {
-    if (!Array.isArray(this.features)) {
-      this.features = [];
-    }
-    if (
-      this.features.length < 3 &&
-      this.features
-        .map(({ modifier }) => modifier)
-        .reduce((a, b) => a + b, modifier) <= this.value
-    ) {
-      this.features.push(new DAOFeature({ label, modifier }));
-    }
-
-    return this;
-  }
-
-  dropFeature(feature: number | DTOFeature) {
-    let idx = -1;
-    if (typeof feature === "number") {
-      idx = feature;
-    } else {
-      idx = this.features.findIndex((feat) => feat === feature);
-    }
-    if (idx !== -1) {
-      this.features.splice(idx, 1);
-    }
-
-    return this;
+  get pointsLeft(): number {
+    return this.value - this.features.reduce((acc: number, {modifier}: DAOFeature) => acc + modifier, 0);
   }
 }
 
@@ -50,18 +24,10 @@ export interface DTOFeature {
 
 export class DAOFeature implements DTOFeature {
   public label: string;
-  private _modifier: number = 1;
+  public modifier: number = 1;
   constructor({ label, modifier }: DTOFeature) {
     this.label = label;
-    this._modifier = modifier;
-  }
-  get modifier(): number {
-    return this._modifier;
-  }
-  set modifier(value: number) {
-    if (0 < value && value <= 3) {
-      this._modifier = value;
-    }
+    this.modifier = modifier;
   }
 }
 

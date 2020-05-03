@@ -1,8 +1,13 @@
 <script lang="typescript">
-  import { DAOFeature, DAOCharacteristic } from "../lib/Characteristic";
+  import Help from "./Help.svelte";
+  import { DAOFeature, DAOCharacteristic } from "../lib/characteristic";
+  import { FeatureInputError } from "./../lib/errors";
+  import { _ } from "../i18n";
+  import { sprintf } from "../utils/string";
 
   export let name: string;
   export let characteristic: DAOCharacteristic;
+  let error: FeatureInputError;
   const attributesClasses = [
     "dice-one",
     "dice-two",
@@ -11,32 +16,38 @@
     "dice-five",
     "dice-six"
   ];
-  let temporalFeatureLabel = "";
-  let pointsLeft: number;
-  $: pointsLeft =
-    characteristic.value -
-    characteristic.features.reduce(
-      (acc: number, feat: DAOFeature) => acc + feat.modifier,
-      0
-    );
+  let features: string = characteristic.features
+    .map((feat: DAOFeature) => `${feat.label} +${feat.modifier}`)
+    .join(", ");
 
-  function addFeature(event) {
-    characteristic = characteristic.addFeature({
-      label: temporalFeatureLabel,
-      modifier: 1
-    });
-    temporalFeatureLabel = "";
+  function validateFeatures(event: Event) {
+    error = null;
+    const target = event.currentTarget as HTMLInputElement;
+    const { value } = target;
+    if (/^\w.*?\s\+\d(,\s*\w.*?\s\+\d)*$/.test(value.trim())) {
+      const newFeatures = Array.from<RegExpMatchArray>(
+        value.matchAll(/(\w.*?)\s\+(\d)/g)
+      ).map(match => new DAOFeature({ label: match[1], modifier: +match[2] }));
+
+      characteristic.features = newFeatures;
+    }
   }
+
+  $: error =
+    characteristic.pointsLeft < 0
+      ? FeatureInputError.AVAILABLE_POINTS_EXCEEDED
+      : characteristic.features.some(
+          ({ modifier }) => !(0 < modifier && modifier <= 3)
+        )
+      ? FeatureInputError.INVALID_POINT_RANGE
+      : features.trim() === "" ||
+        /^\w.*?\s\+\d(,\s*\w.*?\s\+\d)*$/.test(features.trim())
+      ? null
+      : FeatureInputError.INVALID_FEATURES_PATTERN;
 </script>
 
 <style lang="scss">
-  .characteristic {
-    display: grid;
-    grid-template-columns: 5em 8em auto;
-    align-items: flex-start;
-  }
-
-  .characteristic > .item:first-child {
+  .caption {
     font-size: 1.25em;
   }
   .dices {
@@ -45,57 +56,55 @@
     align-content: center;
     .mdi {
       font-size: 1.2em;
+      cursor: pointer;
+
+      &.disabled {
+        pointer-events: none;
+        cursor: default;
+      }
     }
   }
 
-  .input {
-    overflow: auto;
-    background: none;
-    margin-left: 1em;
+  .features {
+    border-bottom: solid #ccc 1px;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
 
-    ul {
-      list-style: none;
-      margin: 0px;
-      padding: 0px;
-
-      input,
-      li {
-        border: none;
-        border-bottom: solid #ccc 1px;
-      }
-
-      input {
-        margin-left: unset;
-        border: unset;
-      }
+    input {
+      border: none;
+      width: 100%;
     }
   }
 </style>
 
-<div class="characteristic">
-  <span class="item caption">{name}</span>
-  <span class="item dices">
-    {#each attributesClasses as attribute, index}
-      <!-- class="fa fa-{characteristic <= index ? 'white' : 'black'} {attribute}" -->
-      <i
-        class="mdi mdi-dice-{index + 1}{characteristic.value <= index ? '-outline' : ''}"
-        on:click={() => {
-          characteristic.value = index + 1;
-        }} />
-    {/each}
-  </span>
-  <span class="input">
-    <ul>
-      {#each characteristic.features as feat, index}
-        <li>"{feat.label} {feat.modifier}"</li>
-      {/each}
-      {#if pointsLeft > 0}
-        <li>
-          <form on:submit|preventDefault={addFeature}>
-            <input class="item" bind:value={temporalFeatureLabel} />
-          </form>
-        </li>
-      {/if}
-    </ul>
-  </span>
-</div>
+<span class="caption">{name}</span>
+<span class="dices">
+  {#each attributesClasses as attribute, index}
+    <span
+      class="mdi mdi-dice-{index + 1}{characteristic.value <= index ? '-outline' : ''}"
+      class:disabled={index >= 5}
+      on:click={() => {
+        index < 5 && (characteristic.value = index + 1);
+      }} />
+  {/each}
+</span>
+<span class="features">
+  <input
+    bind:value={features}
+    on:input={validateFeatures}
+    placeholder={$_('app.characteristics.feature-placeholder')} />
+  {#if error === FeatureInputError.AVAILABLE_POINTS_EXCEEDED}
+    <span
+      class="mdi mdi-alert-outline"
+      title={sprintf($_('app.characteristics.feature-warning-available-points-exceeded'), characteristic.value, name)} />
+  {:else if error === FeatureInputError.INVALID_POINT_RANGE}
+    <span
+      class="mdi mdi-alert-outline"
+      title={sprintf($_('app.characteristics.feature-warning-invalid-point-range'), characteristic.value, name)} />
+  {:else if error === FeatureInputError.INVALID_FEATURES_PATTERN}
+    <span
+      class="mdi mdi-alert-outline"
+      title={sprintf($_('app.characteristics.feature-warning-invalid-features-pattern'), characteristic.value, name)} />
+  {/if}
+</span>

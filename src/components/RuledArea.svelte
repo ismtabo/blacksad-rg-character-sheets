@@ -4,23 +4,28 @@
 </script>
 
 <style lang="scss">
-  .notes {
+  div {
+    --line-height: 1.938em;
     width: 100%;
+    height: 100%;
+    max-height: 100%;
     background-attachment: local;
     background-image: repeating-linear-gradient(
       white,
-      white 29px,
-      #ccc 30px,
-      #ccc 31px,
-      white 30px
+      white 1.813em,
+      #ccc 1.875em,
+      #ccc var(--line-height),
+      white 1.875em
     );
-    line-height: 31px;
+    line-height: var(--line-height);
     border: none;
     overflow-y: auto;
     overflow-x: hidden;
   }
 </style>
 
-<div class="notes" style="height: calc(31px * {rows})" contenteditable>
+<div
+  style="{`height: calc(var(--line-height) * ${rows})`}; "
+  contenteditable>
   {value}
 </div>

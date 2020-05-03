@@ -1,5 +1,5 @@
-import { HealthType } from "./HealthType";
-import { DTOCharacteristics, DAOCharacteristics } from "./Characteristic";
+import { DAOCharacteristics, DTOCharacteristics } from "./characteristic";
+import { HealthType } from "./healthType";
 
 interface DTOCharacter {
   name: string;

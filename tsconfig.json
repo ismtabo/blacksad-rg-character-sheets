@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "types": ["svelte"],
-    "target": "esnext",
+    "target": "ESNext",
     "module": "ESNext",
     "baseUrl": "./src/",
     "resolveJsonModule": true,

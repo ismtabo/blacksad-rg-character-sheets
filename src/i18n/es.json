@@ -7,7 +7,13 @@
       "reflex": "Reflejos",
       "will": "Voluntad",
       "intellect": "Intelecto",
-      "label": "Características"
+      "label": "Características",
+      "warning-points-left": "El número máximo de puntos que se pueden gastar en las características es 12. Has gastado {0} puntos.",
+      "help": "Las características determinan la facilidad con la que tu personaje afronta los diferentes retos de fuerza, destreza, voluntad e intelecto según diga tu master. Los puntos que gastes en cada atributo determina el número de dados negros que tiras. Sobre cada atributo se pueden gastar 5 puntos, con un máximo de 12 en total.",
+      "feature-placeholder": "Rasgo +modificador[, Rasgo 2 +modificador ...]",
+      "feature-warning-invalid-point-range": "El modificador de rasgo tiene que estar contenido entre 1 y 3.",
+      "feature-warning-available-points-exceeded": "Ha superado los {0} puntos disponibles de {1}.",
+      "feature-warning-invalid-features-pattern": "Revise el formato de los rasgos: \"Nombre +modificador\" separados por comas"
     },
     "milestones": "Hitos",
     "complication": "Complicación",
@@ -40,6 +46,8 @@
       "dying": "Moribundo"
     },
     "background": "Historia",
-    "temporal-aspects": "Aspectos Temporales"
+    "temporal-aspects": "Aspectos Temporales",
+    "languages": "Idiomas",
+    "warning-dismiss-message": "Haz click en el mensaje para ocultarlo"
   }
 }

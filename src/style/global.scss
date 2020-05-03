@@ -1,14 +1,27 @@
 @import "./theme.scss";
-* {
+html {
   box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+* {
+  margin: 0;
+  padding: 0;
 }
 
 @font-face {
   font-family: blacksad;
-  src: url("./style/fonts/KPIWUB+HamburgerHeaven.woff");
+  src: url("./style/fonts/KPIWUB+HamburgerHeaven.woff") format('woff');
+  font-weight: normal;
 }
 
 @font-face {
   font-family: comic-sans;
-  src: url("./style/fonts/JHYQGD+LaffayetteComicPro.woff");
+  src: url("./style/fonts/JHYQGD+LaffayetteComicPro.woff") format('woff');
+  font-weight: normal;
 }
