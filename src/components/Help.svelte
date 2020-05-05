@@ -15,7 +15,7 @@
       color: #222;
       content: attr(data-title);
       display: inline-block;
-      font-family: var(--input-font);
+      font-family: var(--tooltip-font);
       font-size: initial;
       max-width: 100em;
       min-width: 50%;

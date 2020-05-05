@@ -19,8 +19,8 @@
       width: 7ex;
       height: 5ex;
       max-height: 5ex;
+      margin-bottom: 14px;
       position: relative;
-      margin: 0 0 3em;
       border: 5px solid black;
       color: #333;
       background: var(--color);

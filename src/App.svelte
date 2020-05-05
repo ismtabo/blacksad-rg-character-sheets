@@ -13,6 +13,7 @@
     --title-font: #{$title-font};
     --input-font: #{$input-font};
     --subtitle-font: #{$subtitle-font};
+    --tooltip-font: #{$tooltip-font};
     --boldest: 800;
   }
 
@@ -45,6 +46,7 @@
     text-align: end;
     font-weight: bold;
     font-size: 1.5em;
+    padding-right: 0.25em;
   }
 
   :global(.concept-title) {
@@ -58,11 +60,9 @@
     height: calc(var(--width) * 1.413793103);
   }
 
-  @media (min-width: 800px) {
+  @media (min-width: 1024px) {
     body {
       background: linear-gradient(#ccc, #fff);
-      height: 100vh;
-      width: 100vw;
 
       main {
         .letter {
@@ -97,77 +97,106 @@
       }
     }
   }
-  header {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1em;
 
-    .navbar {
-      height: 4.375ems;
+  @media (max-width: 1024px) {
+    .letter {
       width: 100%;
-      .navbar-nav {
-        list-style-type: none;
+      height: unset;
+    }
+  }
 
-        display: flex;
-        align-items: center;
-        justify-content: flex-start;
-        height: 100%;
+  body {
+    display: grid;
+    grid-template: "header" 4.375em "main" auto;
+    overflow-x: hidden;
+    width: 100%;
 
-        .nav-item .mdi {
-          font-size: 3em;
-        }
+    header {
+      align-items: center;
+      display: flex;
+      grid-area: header;
+      height: 100%;
+      max-width: 100%;
+      padding: 1rem;
+      position: relative;
+      width: 100%;
 
-        .nav-item.has-dropdown:focus-within .dropdown {
-          opacity: 1;
-          pointer-events: auto;
-        }
+      .navbar {
+        width: 100%;
 
-        .dropdown {
-          background: white;
-          border-radius: 10%;
+        .navbar-nav {
+          list-style-type: none;
+
           display: flex;
-          flex-direction: column;
-          list-style: none;
-          opacity: 0;
-          padding: 0.5em;
-          position: absolute;
-          transition: opacity 0.15s ease-out;
-          width: 4em;
-          z-index: 1;
+          align-items: center;
+          justify-content: flex-start;
+          height: 100%;
 
-          .dropdown-item .locale {
+          .nav-item .mdi {
+            font-size: 3em;
+          }
+
+          .nav-item.has-dropdown:focus-within .dropdown {
+            opacity: 1;
+            pointer-events: auto;
+          }
+
+          .dropdown {
+            background: white;
+            border-radius: 10%;
             display: flex;
-            font-family: var(--input-font);
-            justify-content: space-between;
-            text-decoration: none;
-            text-transform: uppercase;
-            width: 100%;
+            flex-direction: column;
+            list-style: none;
+            opacity: 0;
+            padding: 0.5em;
+            position: absolute;
+            transition: opacity 0.15s ease-out;
+            width: 4em;
+            z-index: 1;
 
-            &.active {
-              font-weight: var(--boldest);
-            }
-
-            &:visited {
+            .dropdown-item .locale {
+              display: flex;
+              font-family: var(--input-font);
+              justify-content: space-between;
               text-decoration: none;
+              text-transform: uppercase;
+              width: 100%;
+
+              &.active {
+                font-weight: var(--boldest);
+              }
+
+              &:visited {
+                text-decoration: none;
+              }
             }
           }
         }
-      }
 
-      .title {
-        text-justify: center;
+        .title {
+          text-justify: center;
+        }
       }
     }
   }
+
+  @media (max-width: 420px) {
+    body {
+      display: flex;
+      flex-direction: column;
+    }
+  }
 </style>
+
+<svelte:head>
+  <title>{$_('app.title')}</title>
+</svelte:head>
 
 <header>
   <nav class="navbar">
     <ul class="navbar-nav">
       <li class="nav-item has-dropdown">
-        <a href="#" title={$_('app.languages', { default: 'Languages' })}>
+        <a href="#" title={$_('app.languages')}>
           <i class="mdi mdi-web" />
         </a>
         <ul class="dropdown">

@@ -33,6 +33,7 @@
 
 <style lang="scss">
   .container {
+    padding-top: .5em;    
     display: flex;
     flex-direction: column;
     align-items: stretch;
@@ -41,7 +42,7 @@
     .characteristic {
       display: grid;
       grid-template-columns: 5em 8em auto;
-      align-items: flex-start;
+      align-items: center;
       grid-gap: 0.5em;
     }
 

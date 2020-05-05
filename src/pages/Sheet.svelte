@@ -52,7 +52,7 @@
 
   .concept {
     display: grid;
-    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 2fr;
+    grid-template-rows: repeat(5, max-content) 1fr;
     grid-template-columns: 33% 1.5fr 1fr;
     grid-template-areas:
       "picture characteristics characteristics"
@@ -66,17 +66,18 @@
     justify-items: stretch;
     align-items: stretch;
     justify-content: stretch;
-    grid-column-gap: .5em;
+    grid-gap: 0.5em;
   }
 
   .items {
-    width: 100%;
+    width: calc(100% - 1em);
     height: 100%;
     display: block;
   }
 
   .img {
     grid-area: picture;
+    border: solid;
   }
   .characteristics {
     grid-area: characteristics;
@@ -115,6 +116,7 @@
   }
 
   .combat-points > .container {
+    padding-top: 0.5em;
     display: flex;
     justify-content: space-between;
     font-size: x-small;
@@ -128,6 +130,7 @@
   }
 
   .moral > .container {
+    padding-top: 0.5em;
     width: 100%;
     display: grid;
     grid-template-columns: auto auto;
@@ -168,6 +171,97 @@
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     grid-gap: 5px;
+  }
+
+  @media (max-width: 1024px) {
+    .concept {
+      grid-template-rows: repeat(5, max-content) 1fr;
+      grid-template-columns: max-content 1fr 1fr;
+      grid-template-areas:
+        "picture characteristics characteristics"
+        "picture milestones milestones"
+        "picture complications complications"
+        "belongings belongings belongings"
+        "combatPoints moral health"
+        "temporalAspects temporalAspects temporalAspects"
+        "background background background";
+    }
+  }
+  @media (max-width: 860px) {
+    .concept {
+      grid-template-rows: repeat(5, max-content) 1fr;
+      grid-template-columns: 1fr 1fr;
+      grid-template-areas:
+        "picture characteristics"
+        "picture milestones"
+        "picture complications"
+        "belongings belongings"
+        "combatPoints combatPoints"
+        "moral health"
+        "temporalAspects temporalAspects"
+        "background background";
+    }
+
+    :global(.combat-points .container .stamina .container) {
+      --columns: 15 !important;
+    }
+
+    :global(.stamina .container .mdi) {
+      font-size: 1.5em !important;
+    }
+  }
+
+  @media (max-width: 680px) {
+    .concept {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .moral .container .stat + div {
+      flex-direction: row;
+      justify-content: space-evenly;
+    }
+
+    :global(.moral .container .stat+div .stamina:first-child .container) {
+      --columns: 10 !important;
+    }
+
+    :global(.moral .stamina .container .mdi) {
+      font-size: 1.5em !important;
+    }
+
+    :global(.health .radio-group .radio-button .suffix) {
+      flex-grow: unset !important;
+      padding-left: 1em !important;
+      text-align: start !important;
+    }
+  }
+
+  @media (max-width: 420px) {
+    :global(.characteristics .characteristic) {
+      grid-template-columns: 5em auto !important;
+      grid-template-areas: "caption dices" "features features";
+    }
+
+    :global(.characteristics .characteristic .dices) {
+      width: 8em;
+    }
+
+    :global(.characteristics .characteristic .features) {
+      grid-area: features;
+    }
+
+    .combat-points .container {
+      flex-direction: column;
+    }
+
+    :global(.combat-points .stamina .container .mdi) {
+      font-size: 2em !important;
+    }
+
+    :global(.moral .container .stat+div .stamina:first-child .container) {
+      --columns: 5 !important;
+    }
   }
 </style>
 

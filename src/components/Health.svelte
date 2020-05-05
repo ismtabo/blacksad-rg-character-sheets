@@ -12,6 +12,7 @@
     flex-direction: column;
     justify-content: space-between;
     font-size: small;
+    padding-top: 0.5em;
 
     .radio-button {
       width: 100%;
@@ -27,7 +28,7 @@
         padding: 0;
         position: absolute;
         width: 1px;
-        
+
         & + label:before {
           font-family: "Material Design Icons";
           content: "\F0766";

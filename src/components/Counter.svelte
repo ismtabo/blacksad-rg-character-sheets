@@ -19,7 +19,8 @@
     .container {
       margin-top: 5px;
       display: grid;
-      grid-template: repeat(3, 1fr) / repeat(10, 1fr);
+      grid-template-columns: repeat(var(--columns), auto);
+      grid-template-rows: auto;
       grid-gap: 2px;
 
       .mdi {
@@ -29,30 +30,15 @@
   }
 
   @media (max-width: 860px) {
-    .stamina > div:last-child > .mdi {
+    .stamina .mdi {
       font-size: 2em;
-    }
-
-    @media (max-width: 760px) {
-      .stamina > div:last-child > .mdi {
-        font-size: 1em;
-      }
-
-      @media (max-width: 480px) {
-        .stamina > div:last-child {
-          display: grid;
-        }
-      }
     }
   }
 </style>
 
 <div class="stamina">
   <div class="caption">{name}</div>
-  <div
-    class="container"
-    style="grid-template-columns: repeat({columns}, auto); grid-template-rows:
-    auto;">
+  <div class="container" style="--columns: {columns}">
     {#each { length: maxValue } as _, i}
       <span
         class="mdi {cssClass}{i <= value - 1 ? '' : '-outline'}"
