@@ -63,7 +63,7 @@
 
       .message {
         align-items: center;
-        background-color: white;
+        background-color: var(--color5);
         border-radius: var(--margin);
         box-shadow: 0 0 var(--margin) var(--margin) white;
         color: red;

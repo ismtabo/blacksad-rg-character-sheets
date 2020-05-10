@@ -51,7 +51,7 @@
         right: 3px;
         border-width: 19px 19px 0;
         border-style: solid;
-        border-color: black transparent;
+        border-color: var(--color1) transparent;
         display: block;
         width: 0;
       }

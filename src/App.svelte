@@ -15,6 +15,11 @@
     --subtitle-font: #{$subtitle-font};
     --tooltip-font: #{$tooltip-font};
     --boldest: 800;
+    --color1: #{$color1};
+    --color2: #{$color2};
+    --color3: #{$color3};
+    --color4: #{$color4};
+    --color5: #{$color5};
   }
 
   :global(.title),
@@ -113,12 +118,12 @@
 
     header {
       align-items: center;
+      background-color: var(--color1);
       display: flex;
       grid-area: header;
       height: 100%;
       max-width: 100%;
       padding: 1rem;
-      position: relative;
       width: 100%;
 
       .navbar {
@@ -132,6 +137,12 @@
           justify-content: flex-start;
           height: 100%;
 
+          &.languages a,
+          a:visited {
+            color: var(--color5);
+            text-decoration: none;
+          }
+
           .nav-item .mdi {
             font-size: 3em;
           }
@@ -144,6 +155,7 @@
           .dropdown {
             background: white;
             border-radius: 10%;
+            border-top-left-radius: 0;
             display: flex;
             flex-direction: column;
             list-style: none;
@@ -161,6 +173,7 @@
               text-decoration: none;
               text-transform: uppercase;
               width: 100%;
+              color: var(--color1);
 
               &.active {
                 font-weight: var(--boldest);
@@ -170,11 +183,29 @@
                 text-decoration: none;
               }
             }
+
+            &::before {
+              content: "";
+              height: 1.5em;
+              width: 1.5em;
+              position: absolute;
+              top: -1.5em;
+              left: 0;
+              border-bottom-left-radius: 50%;
+              box-shadow: 0 .75em 0 0 white;
+              z-index: -1;
+            }
           }
         }
+      }
 
-        .title {
-          text-justify: center;
+      .title {
+        color: var(--color5);
+        .main {
+          font-size: 2.5em;
+        }
+        .subtitle {
+          color: var(--color4);
         }
       }
     }
@@ -195,7 +226,7 @@
 <header>
   <nav class="navbar">
     <ul class="navbar-nav">
-      <li class="nav-item has-dropdown">
+      <li class="nav-item has-dropdown languages">
         <a href="#" title={$_('app.languages')}>
           <i class="mdi mdi-web" />
         </a>
@@ -217,7 +248,10 @@
       </li>
     </ul>
   </nav>
-  <h1 class="title">BLACKSAD</h1>
+  <div class="title">
+    <h1 class="main">BLACKSAD</h1>
+    <h5 class="subtitle">{$_('app.subtitle')}</h5>
+  </div>
 </header>
 
 <main>
@@ -225,3 +259,7 @@
     <Sheet class="sheet" />
   </div>
 </main>
+
+<footer>
+
+</footer>
